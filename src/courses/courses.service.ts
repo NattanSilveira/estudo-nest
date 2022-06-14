@@ -19,6 +19,7 @@ export class CoursesService {
     if (!course) {
       throw new HttpException(`Curso id:${id} não encontrado`, HttpStatus.NOT_FOUND)
     }
+    return course;
   }
   create(createCourseDto: any) {
     this.courses.push(createCourseDto);
