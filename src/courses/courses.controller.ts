@@ -1,10 +1,10 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Res } from "@nestjs/common";
 
 @Controller('courses')
 export class CoursesController {
   @Get('list')
-  findAll() {
-    return 'listagem de cursos';
+  findAll(@Res() response) {
+    return response.status(200).send('Listagem de cursos'); //enviando status code dentro da response da requisição
   }
   // @Get(':id') //: indica o parametro recebido
   // findOne(@Param() params) {
@@ -16,6 +16,7 @@ export class CoursesController {
     return `Curso ${id}`;
   }
   @Post()
+  // @HttpCode(HttpStatus.NO_CONTENT) //Forçando o status code da requisição
   create(@Body() body) {
     return body;
   }
